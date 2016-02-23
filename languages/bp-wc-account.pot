@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BP WC Account 1.0.0-alpha\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bp-wc-account\n"
-"POT-Creation-Date: 2016-02-22 23:41:07+00:00\n"
+"POT-Creation-Date: 2016-02-23 19:16:02+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,20 +12,20 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: bp-wc-account.php:200
+#: bp-wc-account.php:202
 msgid "%s requires at least version %s of BuddyPress."
 msgstr ""
 
-#: bp-wc-account.php:204
+#: bp-wc-account.php:206
 msgid "%s requires the WooCommerce plugin to be activated."
 msgstr ""
 
-#: includes/component.php:27 includes/component.php:102
-#: includes/component.php:175
+#: includes/component.php:27 includes/component.php:108
+#: includes/component.php:181
 msgid "My Account"
 msgstr ""
 
-#: includes/component.php:116 includes/component.php:183
+#: includes/component.php:122 includes/component.php:189
 msgid "Dashboard"
 msgstr ""
 #. Plugin Name of the plugin/theme
