@@ -174,6 +174,8 @@ class BP_WC_Account {
 
 	/**
 	 * Add inline style
+	 *
+	 * @since 1.0.0
 	 */
 	public function wc_inline_style() {
 		if ( ! bp_is_current_component( 'my-account' ) ) {

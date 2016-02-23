@@ -42,6 +42,9 @@ class BP_WC_Account_Component extends BP_Component {
 	public function setup_hooks() {
 		add_filter( 'woocommerce_get_endpoint_url',             array( $this, 'get_url' ),     10, 4 );
 		add_filter( 'woocommerce_get_myaccount_page_permalink', array( $this, 'account_url' ), 10, 1 );
+
+		// Used to check if the user was redirected from the WordPress Administration
+		add_filter( 'woocommerce_prevent_admin_access', array( $this, 'was_redirected' ), 1000, 1 );
 	}
 
 	/**
@@ -82,6 +85,9 @@ class BP_WC_Account_Component extends BP_Component {
 		if ( is_user_logged_in() ) {
 			$this->wc_account_link = trailingslashit( bp_loggedin_user_domain() . $this->slug );
 		}
+
+		// Was the user redirected from WP Admin ?
+		$this->was_redirected = false;
 	}
 
 	/**
@@ -280,6 +286,18 @@ class BP_WC_Account_Component extends BP_Component {
 	}
 
 	/**
+	 * Figure out if the user was redirected from the WP Admin
+	 *
+	 * @since 1.0.0
+	 */
+	public function was_redirected( $prevent_access ) {
+		// Catch this, true means the user is about to be redirected
+		$this->was_redirected = $prevent_access;
+
+		return $prevent_access;
+	}
+
+	/**
 	 * Filter the account root url if needed.
 	 *
 	 * WooCommerce use this to redirect the user when a form is submitted.
@@ -289,10 +307,7 @@ class BP_WC_Account_Component extends BP_Component {
 	public function account_url( $url = '' ) {
 		global $wp;
 
-		// WooCommerce may redirect the loggedin user to his "my account" page...
-		$loggedin_redirected = false !== strpos( wp_get_referer(), 'wp-login.php' ) && ! current_user_can( 'edit_posts' );
-
-		if ( ! bp_is_current_component( 'my-account' ) && ! apply_filters( 'bp_wc_account_url_use_everywhere', false ) && ! isset( $wp->query_vars['customer-logout'] ) && ! $loggedin_redirected ) {
+		if ( ! bp_is_current_component( 'my-account' ) && ! apply_filters( 'bp_wc_account_url_use_everywhere', false ) && ! isset( $wp->query_vars['customer-logout'] ) && empty( $this->was_redirected ) ) {
 			return $url;
 		}
 
