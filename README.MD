@@ -1,6 +1,8 @@
 BP WC Account
 =============
 
+**This BuddyPress plugin is no more maintained and is now archived**
+
 Integrates the WooCommerce "My Account" pages inside the BuddyPress user's profile
 
 
